@@ -62,6 +62,19 @@ services:
       - public
     volumes:
       - ./docker/data/lrs/logs:/opt/lrs/logs
+
+  celery:
+    restart: always
+    build:
+      context: .
+    container_name: docker_celery
+    command: "/bin/setup-lrs.sh celery_worker"
+    depends_on:
+      - lrs
+      - amqp
+    networks:
+      - public
+
   
   # nginx proxy used to handle LRS traffic
   nginx:

@@ -20,5 +20,10 @@ chmod -R 775 /etc/uwsgi/vassals
 chmod -R 775 /lib/systemd/system
 echo "... file permissions set!  Starting container."
 
+# if first args is celery_worker then run celery
+if [ "$1" = 'celery_worker' ]; then
+    celery -A lrs worker --loglevel=info
+else
 # Start uwsgi
 /opt/lrs/env/bin/uwsgi --emperor /etc/uwsgi/vassals
+fi
