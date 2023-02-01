@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.views.generic import RedirectView
+from django.urls import path
 
 from . import views
 
@@ -23,3 +24,5 @@ urlpatterns = [
     # xapi oauth endpoints
     url(r'^OAuth/', include(('oauth_provider.urls', 'oauth'), namespace='oauth')),
 ]
+
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]

@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
+from django.urls import path
 
 from . import views
 
@@ -50,3 +51,5 @@ urlpatterns = [
 
     url(r'^statementvalidator$', views.stmt_validator, name='stmt_validator'),
 ]
+
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]

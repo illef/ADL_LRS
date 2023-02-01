@@ -3,6 +3,8 @@ from os import path
 from os.path import dirname, abspath
 from configparser import RawConfigParser
 
+SILKY_PYTHON_PROFILER = True
+
 ALLOWED_HOSTS = ['*']
 
 # Root of LRS
@@ -77,7 +79,8 @@ USE_L10N = True
 USE_TZ = True
 
 # Set this to True if you would like to utilize the webhooks functionality
-USE_HOOKS = config.getboolean('hooks', 'USE_HOOKS')
+# USE_HOOKS = config.getboolean('hooks', 'USE_HOOKS')
+USE_HOOKS = True
 
 # Newer versions of Django recommend specifying a default auto field here
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
@@ -285,6 +288,7 @@ MIDDLEWARE = (
     # Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'defender.middleware.FailedLoginMiddleware',
+    'silk.middleware.SilkyMiddleware',
 )
 
 # Main url router
@@ -309,7 +313,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'jsonify',
     'corsheaders',
-    'defender'
+    'defender',
+    'silk'
 ]
 
 REQUEST_HANDLER_LOG_DIR = path.join(PROJECT_ROOT, 'logs/django_request.log')
