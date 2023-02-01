@@ -65,6 +65,8 @@ def check_statement_hooks(stmt_ids):
                 except Exception as e:
                     celery_logger.exception("Could not send statements to hook %s: %s" % (
                         str(config['endpoint']), str(e)))
+            else:
+                celery_logger.info("No statements found for hook %s" % str(h[0]))
     except SoftTimeLimitExceeded:
         celery_logger.exception("Statement hook task timed out")
 
