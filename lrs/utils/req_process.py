@@ -135,8 +135,6 @@ def process_complex_get(req_dict):
     return resp, content_length
 
 
-from silk.profiling.profiler import silk_profile
-@silk_profile(name='statements_post')
 def statements_post(req_dict):
     auth = req_dict['auth']
     # If single statement, put in list
@@ -157,7 +155,6 @@ def statements_post(req_dict):
     return JsonResponse([st for st in stmt_ids], safe=False)
 
 
-@silk_profile(name='statements_put')
 def statements_put(req_dict):
     auth = req_dict['auth']
     # Since it is single stmt put in list

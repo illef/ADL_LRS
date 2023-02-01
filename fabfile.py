@@ -73,7 +73,6 @@ def setup_lrs():
     local('./manage.py migrate')
     local('./manage.py migrate defender')
     local('./manage.py createsuperuser')
-    local('./manage.py collectstatic')
 
 
 def test_lrs():
